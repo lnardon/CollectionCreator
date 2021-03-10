@@ -4,7 +4,7 @@
   "version": "1.0",
   "content_scripts": [
     {
-      "matches": ["<ALL_URLS>"],
+      "matches": ["https://*/*"],
       "js": ["content.js"]
     }
   ],
