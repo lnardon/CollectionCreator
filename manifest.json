@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "CollectionCreator",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["<ALL_URLS>"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["tabs"],
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Collection Creator"
+  }
+}
