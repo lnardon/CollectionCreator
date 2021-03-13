@@ -1,18 +1,21 @@
 function gotMessage() {
   console.log("Got");
 }
+
+function copyToClipboard(text) {
+  const input = document.createElement("textarea");
+  input.innerHTML = text;
+  document.body.appendChild(input);
+  input.select();
+  const result = document.execCommand("copy");
+  document.body.removeChild(input);
+  return result;
+}
+
 window.onload = () => {
   document.addEventListener("click", (e) => {
-    console.log(e.target.src);
+    copyToClipboard(e.target.src);
   });
-  let auxDiv = document.createElement("div");
-  auxDiv.style.position = "absolute";
-  auxDiv.style.width = "1000px";
-  auxDiv.style.height = "1000px";
-  auxDiv.style.backgroundColor = "#313131";
-  auxDiv.style.zIndex = "1000000";
-  auxDiv.style.top = "0px";
-  document.body.prepend(auxDiv);
 };
 
 chrome.runtime.onMessage.addListener(gotMessage);
