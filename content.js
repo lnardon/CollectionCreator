@@ -1,5 +1,5 @@
-function gotMessage() {
-  console.log("Got");
+function gotMessage(e) {
+  console.log("Got" + e);
 }
 
 function copyToClipboard(text) {
@@ -33,7 +33,7 @@ function getElements(e) {
 
 window.onload = () => {
   document.addEventListener("click", (e) => {
-    getElements(e);
+    // getElements(e);
   });
 };
 
