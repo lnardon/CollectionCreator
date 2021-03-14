@@ -1,7 +1,3 @@
-function gotMessage(e) {
-  console.log("Got" + e);
-}
-
 function copyToClipboard(text) {
   const input = document.createElement("textarea");
   input.innerHTML = text;
@@ -26,15 +22,25 @@ function getElements(e) {
       hoveredElement = document.elementFromPoint(x, y);
     } else {
       copyToClipboard(hoveredElement.src);
+      alert("Link copied to clipboard!");
       foundImage = !foundImage;
     }
   }
 }
 
-window.onload = () => {
-  document.addEventListener("click", (e) => {
-    // getElements(e);
-  });
-};
-
 chrome.runtime.onMessage.addListener(gotMessage);
+function gotMessage(message) {
+  console.log(message);
+  switch (message.type) {
+    case "GET_LINK":
+      document.addEventListener("click", (e) => {
+        getElements(e);
+      });
+      break;
+      // case "CLOSE_EXTENSION":
+      //   alert("CLOSE_EXTENSION");
+      break;
+    default:
+      break;
+  }
+}
