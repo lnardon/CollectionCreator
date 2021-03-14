@@ -8,7 +8,7 @@ function copyToClipboard(text) {
   return result;
 }
 
-function getElements(e) {
+function getImageUrl(e) {
   const x = e.clientX;
   const y = e.clientY;
   let stack = [];
@@ -19,13 +19,26 @@ function getElements(e) {
   while (!foundImage) {
     if (hoveredElement.tagName !== "IMG") {
       hoveredElement.style.pointerEvents = "none";
+      stack.push(hoveredElement);
       hoveredElement = document.elementFromPoint(x, y);
     } else {
       copyToClipboard(hoveredElement.src);
-      alert("Link copied to clipboard!");
+      undoPointerEvents(stack);
+      removeListener();
       foundImage = !foundImage;
+      alert("Link copied to clipboard!");
     }
   }
+}
+
+function undoPointerEvents(elements) {
+  elements.forEach((el) => {
+    el.style.pointerEvents = "auto";
+  });
+}
+
+function removeListener() {
+  document.removeEventListener("click", getImageUrl);
 }
 
 chrome.runtime.onMessage.addListener(gotMessage);
@@ -34,11 +47,8 @@ function gotMessage(message) {
   switch (message.type) {
     case "GET_LINK":
       document.addEventListener("click", (e) => {
-        getElements(e);
+        getImageUrl(e);
       });
-      break;
-      // case "CLOSE_EXTENSION":
-      //   alert("CLOSE_EXTENSION");
       break;
     default:
       break;
