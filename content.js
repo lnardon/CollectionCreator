@@ -50,6 +50,9 @@ function gotMessage(message) {
         getImageUrl(e);
       });
       break;
+    // case "CLOSE_EXTENSION":
+    //   alert("SKRT");
+    //   break;
     default:
       break;
   }

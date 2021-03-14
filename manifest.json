@@ -14,6 +14,12 @@
   "permissions": ["tabs"],
   "browser_action": {
     "default_popup": "index.html",
+    "default_icon": "./logo.png",
     "default_title": "Collection Creator"
+  },
+  "icons": {
+    "16": "logo.png",
+    "48": "logo.png",
+    "128": "logo.png"
   }
 }
