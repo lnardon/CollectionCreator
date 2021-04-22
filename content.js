@@ -5,9 +5,7 @@ function copyToClipboard(text) {
   input.select();
   const result = document.execCommand("copy");
   document.body.removeChild(input);
-  document.removeEventListener("click", (e) => {
-    getImageUrl(e);
-  });
+  document.removeEventListener("click", listener);
 }
 
 function getImageUrl(element) {
@@ -20,9 +18,11 @@ function getImageUrl(element) {
   copyToClipboard(element.target.srcset || element.target.src);
 }
 
+function listener(e) {
+  getImageUrl(e);
+}
+
 chrome.runtime.onMessage.addListener(gotMessage);
 function gotMessage(message) {
-  document.addEventListener("click", (e) => {
-    getImageUrl(e);
-  });
+  document.addEventListener("click", listener);
 }
