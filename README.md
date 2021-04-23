@@ -1,14 +1,10 @@
 # Collection Creator (Chrome / Chromium)
 
-Extension to create a collection of design images you find on the internet
+Easily copy image URLs to create quick and rich mood boards.
 
 <p align="center">
   <img src="./demo.gif">
 </p>
-
-## How it works
-
-Coming soon...
 
 ## Installation
 
@@ -16,3 +12,9 @@ Coming soon...
 - Unzip the pack and go to your chrome extensions tab
 - Enable Developer Mode on the page
 - Click on the "Load Unpacked" Button and choose the folder of the extension
+
+## Usage
+
+- Click the extension icon to open the popup
+- Click on the desired image to be copied
+- If no error messages were displayed, the image link is now available on your copyboard
